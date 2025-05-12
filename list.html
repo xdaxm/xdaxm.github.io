@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目列表 - 中龙项目网</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; }
+        .article-list { margin-left: 20px; }
+        .article-item { padding: 5px; }
+        .article-item a { text-decoration: none; color: #333; font-size: 16px; }
+        .article-item a:hover { color: red; }
+    </style>
+</head>
+<body>
+    <h1 id="subcategory-title">加载中...</h1>
+    <div id="content"></div>
+
+    <div id="article-list">
+    <p>加载中...</p>
+</div>
+
+    <script>
+async function loadArticles() {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+    const tag = params.get("tag");
+
+    const articleListDiv = document.getElementById("article-list");
+    const titleElement = document.getElementById("subcategory-title");
+
+    if (!articleListDiv || !titleElement) {
+        console.error("错误: 容器未找到");
+        return;
+    }
+
+    if (!category || !tag) {
+        titleElement.innerText = "未找到子分类";
+        articleListDiv.innerHTML = "<p>未找到子分类</p>";
+        return;
+    }
+
+    // 设置标题为当前分类
+    titleElement.innerText = `项目名称：${decodeURIComponent(tag)}`;
+
+    try {
+        const response = await fetch("https://slightlyrudge.github.io/articles.json");
+        if (!response.ok) throw new Error(`无法加载数据: ${response.status}`);
+
+        const data = await response.json();
+        console.log("JSON 数据加载成功:", data);
+
+        if (!data[category] || !data[category][tag]) {
+            articleListDiv.innerHTML = "<p>子分类未找到</p>";
+            return;
+        }
+
+        const articles = data[category][tag];
+        let html = "<ul>";
+
+        articles.forEach(article => {
+            if (article.title && article.file) {
+                const articleUrl = `article.html?file=${encodeURIComponent(article.file)}`;
+                html += `<li><a href="${articleUrl}">${article.title}</a></li>`;
+            } else {
+                console.warn("数据格式错误:", article);
+            }
+        });
+
+        html += "</ul>";
+        articleListDiv.innerHTML = html;
+    } catch (error) {
+        console.error("加载文章失败:", error);
+        articleListDiv.innerHTML = "<p>无法加载文章列表</p>";
+    }
+}
+
+loadArticles();
+    </script>
+</body>
+</html>
