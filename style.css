@@ -1,0 +1,82 @@
+/* 供需信息页样式 */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filter-btn.active {
+    background-color: red;
+    color: white;
+}
+
+.article-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.article-card {
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.article-card.red {
+    background-color: red;
+}
+
+.article-card.blue {
+    background-color: blue;
+}
+
+
+.article-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.article-card:hover {
+    background-color: #f5f5f5;
+}
+
+
+.article-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;  /* 确保背景是白色 */
+    color: #333;  /* 文字颜色设为深色 */
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.article-card h3, 
+.article-card p {
+    color: #333;  /* 让标题和日期变深色 */
+}
+
+body {
+    padding-top: 50px; /* 和导航栏的高度一致 */
+}
