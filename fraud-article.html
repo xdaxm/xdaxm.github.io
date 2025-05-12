@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防骗指南 - 文章详情</title>
+</head>
+<body>
+    <h1 id="article-title">加载中...</h1>
+    <p id="article-time"></p>
+    <div id="article-content"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get("id");
+
+            if (!articleId) {
+                document.body.innerHTML = "<h2>文章参数缺失</h2>";
+                return;
+            }
+
+            fetch("fraud-posts.json") // 读取防骗文章
+                .then(response => response.json())
+                .then(data => {
+                    const article = data.find(a => a.id == articleId);
+                    if (!article) {
+                        document.body.innerHTML = "<h2>未找到文章</h2>";
+                        return;
+                    }
+
+                    document.querySelector("#article-title").textContent = article.title;
+                    document.querySelector("#article-content").innerHTML = article.content.replace(/\n/g, "<br>");
+                    document.querySelector("#article-time").textContent = "发布时间：" + article.time;
+                })
+                .catch(error => {
+                    console.error("加载文章失败:", error);
+                    document.body.innerHTML = "<h2>加载文章失败</h2>";
+                });
+        });
+    </script>
+</body>
+</html>
