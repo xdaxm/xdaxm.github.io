@@ -45,7 +45,7 @@ async function loadArticles() {
     titleElement.innerText = `项目名称：${decodeURIComponent(tag)}`;
 
     try {
-        const response = await fetch("https://slightlyrudge.github.io/articles.json");
+        const response = await fetch("https://xdaxm.github.io/articles.json");
         if (!response.ok) throw new Error(`无法加载数据: ${response.status}`);
 
         const data = await response.json();
