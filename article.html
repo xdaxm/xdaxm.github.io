@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 - 中龙项目网</title>
+
+    <!-- ✅ 确保正确引入 marked.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        h1 { text-align: center; }
+        #content { margin-top: 20px; line-height: 1.6; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1 id="article-title">加载中...</h1>
+    <div id="content">文章加载中...</div>
+
+    <script>
+     async function loadArticle() {
+    const params = new URLSearchParams(window.location.search);
+    let file = params.get("file");
+
+    if (!file) {
+        document.getElementById("article-title").innerText = "未找到文章";
+        document.getElementById("content").innerHTML = "<p style='color: red;'>文章参数缺失</p>";
+        return;
+    }
+
+    try {
+        // **修改文件路径，确保获取原始 Markdown**
+        const encodedFile = encodeURIComponent(file);
+        const filePath = `https://slightlyrudge.github.io/articles/${encodedFile}`;
+        console.log("加载文章路径:", filePath);
+
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`无法加载文章: ${response.status}`);
+
+        const text = await response.text();
+        
+        // **解析 Markdown 并显示**
+        document.getElementById("article-title").innerText = decodeURIComponent(file).replace(".md", ""); // 设置标题
+        document.getElementById("content").innerHTML = marked.parse(text);
+    } catch (error) {
+        document.getElementById("content").innerHTML = "<p style='color: red;'>文章加载失败</p>";
+        console.error("文章加载错误:", error);
+    }
+}
+
+
+        loadArticle();
+    </script>
+</body>
+</html>
