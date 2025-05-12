@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta name="description" content="金点子担保，金点子项目，金点子担保网，最大的担保平台、最可靠的担保平台">
+<meta name="keywords" content="担保, 项目, 代码, 中龙项目担保网">
+<meta name="author" content="金点子担保">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+
+   <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金点子担保平台</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 0; margin: 0; }
+        .navbar { background-color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; }
+        .navbar strong { font-size: 24px; } /* 增大网站名称字体 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: auto; /* 取消固定高度 */
+    flex-wrap: wrap; /* 防止内容超出 */
+}
+.nav-links {
+    display: flex;
+    flex-wrap: wrap; /* 允许文字换行 */
+    gap: 15px;
+    max-width: 80%; /* 限制宽度，防止溢出 */
+}
+.nav-links a {
+    white-space: nowrap; /* 避免换行 */
+}
+
+        .hero { position: relative; text-align: center; color: white; }
+        .hero img { width: 100%; height: 400px; object-fit: cover; } /* 调整大横幅图片高度 */
+        .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; font-weight: bold; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; }
+        .search-bar { text-align: center; margin: 20px 0; }
+        .search-bar input { padding: 8px; width: 60%; max-width: 500px; }
+        .search-bar button { padding: 8px 15px; background: red; color: white; border: none; cursor: pointer; }
+        .category-container { margin-bottom: 20px; padding: 20px; }
+        .category { font-size: 18px; font-weight: bold; margin-top: 20px; border-left: 5px solid red; padding-left: 10px; }
+        .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .btn { padding: 8px 12px; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; text-decoration: none; color: black; min-width: 120px; text-align: center; }
+        .btn:hover { background-color: #f0f0f0; }
+       .category-intro {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.category-intro p {
+    margin: 5px 0;
+}
+.category-intro strong {
+    color: #d9534f; /* 红色强调 */
+}
+
+       #search-results {
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.search-result-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.search-result-item a:hover {
+    text-decoration: underline;
+}
+
+       .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* 你的导航栏高度 */
+    background: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar strong {
+    flex-grow: 1; /* 让标题填充可用空间 */
+}
+.nav-links {
+    flex-grow: 2; /* 让导航栏自动调整 */
+}
+       
+.title strong {
+    color: red;/* 标题颜色 */
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+<div class="title"><strong>金点子担保</strong></div>
+        <div class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="market.html">供需信息</a>
+            <a href="fraud.html">防骗指南</a>
+            <a href="lianxiwomen.html">联系我们</a>
+            <a href="gonggaoxiaoxi.html">公告消息</a>
+           <a href="about.html">关于我们</a>
+            <a href="faq.html">常见问题</a>
+        </div>
+    </div>
+    
+    <div class="hero">
+        <img src="banner.jpg" alt="大横幅图片">
+        <div class="hero-text">欢迎访问金点子担保平台网</div>
+    </div>
+    
+<div class="search-bar">
+    <input type="text" id="search-input" placeholder="想搜些什么呢？">
+    <button id="search-btn">搜索</button>
+</div>
+<div id="search-results"></div>
+
+
+<div class="category-intro">
+    <p>为了更好防骗，金点子担保平台网唯一联系邮箱 <strong>jdz.rimmed679@slmail.me</strong>。</p>
+    <p><strong>温馨提示：</strong> 所有服务由商户提供，请联系邮箱<strong>jdz.rimmed679@slmail.me</strong>获取“老板”、“业务员”、“客服”的商户方进行交易，本站只提供担保服务。</p>
+    <p>如“老板”、“业务员”、“客服”、“代理”、“团长”、“车队”等字样商户方进行交易，可以发送邮箱 <strong>jdz.rimmed679@slmail.me</strong>，验证商户方真伪。</p>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告消息</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 页面整体布局 */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        /* 标题样式 */
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            border-left: 5px solid red;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 主要内容框 */
+        .content-box {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 文字样式 */
+        .content-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* 重点内容加粗 */
+        .highlight {
+            font-weight: bold;
+            color: red;
+        }
+
+        /* 署名 */
+        .signature {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">公告消息</div>
+        <div class="content-box">
+            <p><span class="highlight">担保收费标准：</span></p>
+            <p>
+           日交易额700U以下 上押1500U起，月费100U。
+            </p>
+          
+           </p>
+           日交易额700U以上 上押3000U起，月费200U。
+          </p>
+          
+          </p>
+           注：上压U不能做为交易金额支付佣金使用。
+          </p>
+
+          </p>
+           需要开担保了解详细的相关事宜请联系邮箱：  JDZ@mail2tor.com  业务咨询 担保。
+          </p>
+          
+          </p>
+           供求信息100U/条 周置顶200U/条 月置顶600U/条
+            </p>
+          
+            <div class="signature">于2024年9月22日更新—— 金点子担保</div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+      
+<script>
+document.getElementById("search-btn").addEventListener("click", async function() {
+    const query = document.getElementById("search-input").value.trim().toLowerCase();
+    if (!query) return;
+
+    try {
+        const response = await fetch("articles.json");
+        const data = await response.json();
+        let articles = [];
+
+        // 遍历所有分类，提取所有文章
+        for (const category in data) {
+            for (const subcategory in data[category]) {
+                articles = articles.concat(data[category][subcategory]); // 合并文章列表
+            }
+        }
+
+        // 搜索匹配的文章
+        const results = articles.filter(article =>
+            article.title.toLowerCase().includes(query)
+        );
+
+        displayResults(results);
+    } catch (error) {
+        console.error("搜索加载失败:", error);
+    }
+});
+
+function displayResults(results) {
+    const resultsDiv = document.getElementById("search-results");
+    resultsDiv.innerHTML = "";
+    
+    if (results.length === 0) {
+        resultsDiv.innerHTML = "<p>未找到匹配的文章。</p>";
+        return;
+    }
+
+    results.forEach(article => {
+        const item = document.createElement("div");
+        item.classList.add("search-result-item");
+        item.innerHTML = `<a href="article.html?file=${encodeURIComponent(article.file)}">${article.title}</a>`;
+        resultsDiv.appendChild(item);
+    });
+}
+
+</script>
+</body>
+
+</body>
+</html>
